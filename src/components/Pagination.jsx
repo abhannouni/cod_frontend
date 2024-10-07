@@ -1,7 +1,9 @@
 import React from 'react';
 
 export default function Pagination({ links, onPageClick }) {
-  if (!links || links.length <= 3) return null;
+  if (!links){ 
+    return null;
+  }
 
   return (
     <div className="mt-8">
