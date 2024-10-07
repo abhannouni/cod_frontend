@@ -1,10 +1,15 @@
-function App() {
-  
-  return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+import React from 'react';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import ProductHome from './pages/ProductHome';
+
+const App = () => {
+  return(
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ProductHome />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
-export default App
+export default App;
