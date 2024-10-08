@@ -4,28 +4,29 @@ import { fetchProducts } from '../redux/product/productThunk';
 import CategoryFilter from '../components/CategoryFilter';
 import ProductCard from '../components/ProductCard';
 import Pagination from '../components/Pagination';
-import CategoryModal from '../components/CategoryModal';
 import ProductModal from '../components/ProductModal';
 
 export default function ProductHome() {
   const dispatch = useDispatch();
   const { products, error, status } = useSelector(state => state.products);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [sortBy, setSortBy] = useState('name');
+
 
   useEffect(() => {
     if (status === 'idle') {
-      dispatch(fetchProducts({url: null}));
+      dispatch(fetchProducts({ url: null, categoryIds: selectedCategory ? [selectedCategory] : [], sortBy }));
     }
-  }, [status, dispatch]);
+  }, [status, dispatch, selectedCategory, sortBy]);
+  
 
   const handlePageClick = (url) => {
     if (url) {
       console.log({selectedCategory});
-      url = url + (selectedCategory ? `&category_ids[]=${selectedCategory}` : '');
-      dispatch(fetchProducts({url}));
+      url = url + (selectedCategory ? `&category_ids[]=${selectedCategory}` : '') + `&sortBy=${sortBy}`;
+      dispatch(fetchProducts({ url }));
     }
   };
 
@@ -34,14 +35,15 @@ export default function ProductHome() {
     dispatch(fetchProducts({ categoryIds: categoryId ? [categoryId] : [] }));
   };
 
-  const handleOpenCategoryModal = (category = null) => {
-    setSelectedItem(category);
-    setIsCategoryModalOpen(true);
-  };
 
   const handleOpenProductModal = (product = null) => {
     setSelectedItem(product);
     setIsProductModalOpen(true);
+  };
+
+  const handleSortChange = (e) => {
+    setSortBy(e.target.value);
+    dispatch(fetchProducts({ categoryIds: selectedCategory ? [selectedCategory] : [], sortBy: e.target.value }));
   };
 
   if (status === 'loading') {
@@ -64,13 +66,16 @@ export default function ProductHome() {
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Our Products</h1>
-        <div className="space-x-2">
-          <button
-            onClick={() => handleOpenCategoryModal()}
-            className="px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-md"
-          >
-            Add Category
-          </button>
+        <div className="space-x-2 flex">
+          <div className="">
+            sort by:
+            <select className="px-2 py-1 border rounded-md"
+              value={sortBy}
+              onChange={handleSortChange}>
+              <option value="name">Name</option>
+              <option value="price">Price</option>
+            </select>
+          </div>
           <button
             onClick={() => handleOpenProductModal()}
             className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md"
@@ -93,22 +98,12 @@ export default function ProductHome() {
             <ProductCard
               key={product.id}
               product={product}
-              onEdit={() => handleOpenProductModal(product)}
             />
           ))}
         </div>
       )}
 
       <Pagination links={products?.links} onPageClick={handlePageClick} />
-
-      <CategoryModal
-        isOpen={isCategoryModalOpen}
-        onClose={() => {
-          setIsCategoryModalOpen(false);
-          setSelectedItem(null);
-        }}
-        category={selectedItem}
-      />
 
       <ProductModal
         isOpen={isProductModalOpen}

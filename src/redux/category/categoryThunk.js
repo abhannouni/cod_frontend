@@ -14,18 +14,3 @@ export const fetchCategories = createAsyncThunk(
     }
 );
 
-export const createCategory = createAsyncThunk(
-    'categories/createCategory',
-    async (category) => {
-        const response = await axios.post(`${API_URL}/categories`, category);
-        return response.data;
-    }
-);
-
-export const updateCategory = createAsyncThunk(
-    'categories/updateCategory',
-    async (category) => {
-        const response = await axios.put(`${API_URL}/categories/${category.id}`, category);
-        return response.data;
-    }
-);
