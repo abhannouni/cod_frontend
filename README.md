@@ -1,8 +1,47 @@
-# React + Vite
+# Product Management Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React application built with Vite that allows users to manage products. Users can create products, browse a paginated product listing, and filter products by category or sort them by name or price.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Create a Product**: Users can create new products and upload images.
+- **Browse Products**: A paginated listing of products.
+- **Sort Products**: Users can sort products by name or price.
+- **Filter by Category**: Users can filter products based on selected categories.
+
+## Technologies Used
+
+- **React**: A JavaScript library for building user interfaces.
+- **Redux Toolkit**: For state management.
+- **Vite**: A fast development server and build tool.
+- **Axios**: For making HTTP requests.
+- **Tailwind CSS**: For styling the application.
+
+## Getting Started
+
+### Prerequisites
+
+Ensure you have Node.js installed. You can download it from [nodejs.org](https://nodejs.org/).
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/abhannouni/cod_frontend.git
+   cd cod_frontend
+   ```
+
+2. Install dependencies:
+    ```
+    npm i
+    ```
+
+### Running the Application
+    ```
+    npm run dev
+    ```
+### backend of the app
+
+    ```
+    https://github.com/abhannouni/cod_backend 
+    ```
