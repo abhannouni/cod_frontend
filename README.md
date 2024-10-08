@@ -1,50 +1,89 @@
-# Product Management Application
+# Laravel Project Setup
 
-This is a React application built with Vite that allows users to manage products. Users can create products, browse a paginated product listing, and filter products by category or sort them by name or price.
+This document outlines the steps to set up and run the Laravel project, including command descriptions.
 
-## Features
+## Prerequisites
 
-- **Create a Product**: Users can create new products and upload images.
-- **Browse Products**: A paginated listing of products.
-- **Sort Products**: Users can sort products by name or price.
-- **Filter by Category**: Users can filter products based on selected categories.
-
-## Technologies Used
-
-- **React**: A JavaScript library for building user interfaces.
-- **Redux Toolkit**: For state management.
-- **Vite**: A fast development server and build tool.
-- **Axios**: For making HTTP requests.
-- **Tailwind CSS**: For styling the application.
+- PHP (version 8.0 or higher)
+- Composer
+- SQLite or another database management system (MySQL, PostgreSQL, etc.)
+- Node.js and npm (for front-end dependencies)
 
 ## Getting Started
 
-### Prerequisites
+### Clone the Repository
 
-Ensure you have Node.js installed. You can download it from [nodejs.org](https://nodejs.org/).
+```bash
+git clone https://github.com/abhannouni/cod_backend.git
+cd cod_backend
+```
 
-### Installation
+## Install PHP Dependencies
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/abhannouni/cod_frontend.git
-   cd cod_frontend
-   ```
+### Run the following command to install the necessary PHP dependencies:
 
-2. Install dependencies:
-    ```
-    npm i
-    ```
+```
+composer install
+```
 
-### Running the Application
+## Set Up Environment File
 
-1. 
-    ```
-    npm run dev
-    ```
-### backend of the app
+### Copy the .env.example file to a new file named .env:
 
-1. 
-    ```
-    https://github.com/abhannouni/cod_backend 
-    ```
+```
+cp .env.example .env
+```
+
+## Set Up Database
+
+1. Create a new database in your DBMS (e.g., SQLite, MySQL).
+
+2. Update your .env file with the correct database configuration.
+
+## Run Migrations
+
+### Run the migrations to set up your database schema:
+
+```
+php artisan migrate
+```
+
+## Run the Development Server
+
+### To start the Laravel development server, run the following command:
+
+```
+php artisan serve
+```
+
+## Available Commands
+
+### Create Product
+
+```
+php artisan app:product:create {name} {price} {category_id}
+```
+
+### Delete Product
+
+```
+php artisan product:delete {id}
+```
+
+### Create Category
+
+```
+php artisan category:create {name}
+```
+
+### Delete Category 
+
+```
+php artisan category:delete {id}
+```
+
+## Run the Tests
+
+ ```
+ php artisan test
+ ```
