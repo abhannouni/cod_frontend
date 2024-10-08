@@ -44,7 +44,4 @@ Ensure you have Node.js installed. You can download it from [nodejs.org](https:/
     ```
 ### backend of the app
 
-1. 
-    ```
-    https://github.com/abhannouni/cod_backend 
-    ```
+1. switch to the backend branch and folow the doc
