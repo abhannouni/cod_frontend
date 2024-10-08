@@ -37,11 +37,14 @@ Ensure you have Node.js installed. You can download it from [nodejs.org](https:/
     ```
 
 ### Running the Application
+
+1. 
     ```
     npm run dev
     ```
 ### backend of the app
 
+1. 
     ```
     https://github.com/abhannouni/cod_backend 
     ```
